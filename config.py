@@ -4,26 +4,22 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 
 class Config:
-    SECRET_KEY = b"}\xe7\xbb':N\x0f:\x07\n\x7f*'\xbb;\xd4\x99\x06\xb0K\xb4\x01\xea\xeb"
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'app.db')
+    THREADED = True
+    SECRET_KEY = b'I\x97\xcf}\x1eN$a[$\xf2\xfdT\xf1C\xf5\xb4\xeb\x97)\x19\x0eY\xab'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    DEBUG = False
-    TESTING = False
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://iec_desenv:iec_desenv@localhost:5432/flask_contacts'
+
 
 class Development(Config):
     DEBUG = True
 
 
-class Production(Config):
+class Testing(Config):
+    # SQLALCHEMY_DATABASE_URI = 'sqlite+pysqlite:///' + os.path.join(basedir, 'testing.db')
     pass
 
 
-class Testing(Config):
-    TESTING = True
-
-
 config = {
-    'development': Development,
-    'production': Production,
+    'dev': Development,
     'testing': Testing,
 }
